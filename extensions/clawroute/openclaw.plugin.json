@@ -1,0 +1,45 @@
+{
+  "name": "clawroute",
+  "version": "0.1.0",
+  "displayName": "ClawRoute Relay Mesh",
+  "description": "Distributes web fetches across peer nodes to avoid IP-based blocking",
+  "entryPoint": "./dist/index.js",
+  "config": {
+    "registryUrl": {
+      "type": "string",
+      "description": "URL of the ClawRoute registry server",
+      "default": "http://localhost:19900"
+    },
+    "relayPort": {
+      "type": "number",
+      "description": "Port for the local relay server",
+      "default": 19800
+    },
+    "identityDir": {
+      "type": "string",
+      "description": "Directory for identity keypair storage",
+      "default": "~/.openclaw/clawroute"
+    },
+    "maxResponseBodyBytes": {
+      "type": "number",
+      "description": "Maximum response body size in bytes",
+      "default": 5242880
+    },
+    "fetchTimeoutMs": {
+      "type": "number",
+      "description": "Timeout for outbound fetches in milliseconds",
+      "default": 15000
+    },
+    "newNodeCreditGrant": {
+      "type": "number",
+      "description": "Initial credit balance for new nodes",
+      "default": 50
+    }
+  },
+  "tools": ["clawroute_fetch"],
+  "services": ["relay-server", "registry-heartbeat"],
+  "cli": {
+    "namespace": "clawroute",
+    "commands": ["status", "peers", "receipts", "identity", "test"]
+  }
+}
